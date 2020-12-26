@@ -1,0 +1,64 @@
+.link {
+    text-decoration: none;
+}
+
+.FavouriteItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    color: #fff;
+    padding: 5px 20px;
+    padding-right: 30px;
+    transition: all 0.5s linear;
+}
+
+.FavouriteItem:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.FavouriteItem:hover .cityName {
+    color: #FFE539;
+}
+
+.cityName {
+    font-size: 16px;  
+    width: 20%;
+}
+
+.tempData {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 25%;
+    margin-left: -60px;
+    /* border: 1px solid red; */
+}
+
+
+.tempValue {
+    font-size: 32px;
+}
+
+
+.tempValue span {
+    font-size: 16px;
+}
+
+.tempInfo {
+    font-size: 18px;
+}
+
+.favIcon {
+    font-size: 18px;
+}
+
+.fav {
+    color: #FFE539;
+}
+
+.notFav {
+    color: #fff;
+}
