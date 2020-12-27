@@ -41,7 +41,7 @@ const NavBar = props => {
                 </div>
             </nav>
 
-            <div className={styles.date}>{displayTime()}</div>
+            <div className={styles.date}>{displayTime().toUpperCase()}</div>
         </div>
     );
 };

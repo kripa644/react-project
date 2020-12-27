@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import Home from './pages/Home';
 import Favorites from './pages/Favorite';
 import RecentItems from './pages/Recent';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import SearchItem from './components/SearchItem/SearchItem';
+import { useGlobalContext } from "./components/context";
 
 const logoUrl = './logo.png';
 
 function App() {
-  
+  const {setSelectedNavItem} = useGlobalContext();
+
   return (
     <div className='app'>
       <div className='app-container'>
         <Router>
-          <SearchItem/>
+          <Link to='/' onClick={() => setSelectedNavItem(0)}><SearchItem/></Link>
           <NavBar/>
           <div className='line'></div>
           <Switch>

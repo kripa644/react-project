@@ -4,7 +4,7 @@ import {FaHeart, FaRegHeart} from 'react-icons/fa';
 import {useGlobalContext} from '../context';
 import { Link } from 'react-router-dom';
 
-const FavouriteItem = ({city, icon, temp, info, isFavorite}) => {
+const FavouriteItem = ({city, country, icon, temp, info, isFavorite}) => {
     const {fetchWeatherData, searchTerm, setSearchTerm, setSelectedNavItem} = useGlobalContext();
     // setSearchTerm(city);
     const iconurl =
@@ -24,7 +24,7 @@ const FavouriteItem = ({city, icon, temp, info, isFavorite}) => {
             redirectToHome(e);
         }}>
             <span className={styles.FavouriteItem }>
-                <div className={styles.cityName}>{city}</div>
+                <div className={styles.cityName}>{`${city}, ${country}`}</div>
                 <div className={styles.tempData}>
                     <div className={styles.image}><img src={iconurl} alt='sunny'/></div>
                     <div className={styles.tempValue}>{temp}<span>&#176;C</span></div>

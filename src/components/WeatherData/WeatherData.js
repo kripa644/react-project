@@ -10,7 +10,7 @@ const WeatherData = props => {
     const {weather, loading, addToFavorite, recentItems} = useGlobalContext();
     const iconurl =
     "http://openweathermap.org/img/w/" +
-    `${weather.data.cod != 404 ? weather.data.weather[0].icon : null}` +
+    `${(weather.data.cod != 404) ? weather.data.weather[0].icon : null}` +
     ".png";
     const [isCelcius, setIsCelcius] = useState(false);
     const tempClassCelcius = `${styles.tempBtn} ${isCelcius ? styles.celcius : undefined}`;
@@ -83,7 +83,7 @@ const WeatherData = props => {
                 </div>
                 <div className={styles.visibility}>
                 <div className={styles.visibilityIcon}><MdVisibility/></div>
-                    <div className={styles.visibilityText}>Visibility <span>{Math.round(weather.data.visibility / 100)} mph</span></div>
+                    <div className={styles.visibilityText}>Visibility <span>{Math.round(weather.data.visibility)} mph</span></div>
                 </div>
             </div>
         </div> :

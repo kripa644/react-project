@@ -4,7 +4,7 @@ import React from 'react';
 import { useGlobalContext } from '../components/context';
 
 const Home = () => {
-    const {weather, loading} = useGlobalContext();
+    const {weather, searchTerm} = useGlobalContext();
     // console.log(WeatherData);
     return (
         <div>
