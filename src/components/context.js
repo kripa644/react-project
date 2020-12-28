@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import {useLocalStorageState} from './useLocalStorageState';
 
 const api = {
     key: 'eba3ee12c3c0d28e4314be09645d4d8b',
@@ -12,11 +13,11 @@ const AppContext = React.createContext();
 
 const AppProvider = ({children}) => {
 
-    const [selectedNavItem, setSelectedNavItem] = useState(0);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [weather, setWeather] = useState({data: ''});
-    const [loading, setLoading] = useState(false);
-    const [recentItems, setRecentItems] = useState([]);
+    const [selectedNavItem, setSelectedNavItem] = useLocalStorageState(0, 'selectedNavItem');
+    const [searchTerm, setSearchTerm] = useLocalStorageState('', 'searchTerm');
+    const [weather, setWeather] = useLocalStorageState({data: ''}, 'weather');
+    const [loading, setLoading] = useLocalStorageState(false, 'loading');
+    const [recentItems, setRecentItems] = useLocalStorageState([], 'recentItems');
 
     const addToFavorite = (cityName) => {
         const newRecentList = recentItems.map((item) => {

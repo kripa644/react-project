@@ -4,6 +4,7 @@ import { FaCloudShowersHeavy, FaHeart, FaThermometerThreeQuarters, FaRegHeart, F
 import {BsDroplet} from 'react-icons/bs';
 import {MdVisibility} from 'react-icons/md';
 import {useGlobalContext} from '../context';
+import {useLocalStorageState} from '../useLocalStorageState';
 
 const WeatherData = props => {
     const {weather, loading, addToFavorite, recentItems} = useGlobalContext();
@@ -11,7 +12,7 @@ const WeatherData = props => {
     "http://openweathermap.org/img/w/" +
     `${(weather.data.cod != 404) ? weather.data.weather[0].icon : null}` +
     ".png";
-    const [isCelcius, setIsCelcius] = useState(false);
+    const [isCelcius, setIsCelcius] = useLocalStorageState(false, 'isCelcius');
     const tempClassCelcius = `${styles.tempBtn} ${isCelcius ? styles.celcius : undefined}`;
     const tempClassFah = `${styles.tempBtn} ${!isCelcius ? styles.celcius : undefined}`;
     // console.log(weather);
