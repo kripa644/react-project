@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './Modal.module.css';
 
 const Modal = ({show, closeModal, remove, children}) => {

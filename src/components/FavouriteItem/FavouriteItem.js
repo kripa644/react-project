@@ -41,5 +41,4 @@ const FavouriteItem = ({city, country, icon, temp, info, isFavorite}) => {
     );
 };
 
-
 export default FavouriteItem;

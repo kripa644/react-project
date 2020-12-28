@@ -4,8 +4,12 @@ import React from 'react';
 import { useGlobalContext } from '../components/context';
 
 const Home = () => {
-    const {weather, searchTerm} = useGlobalContext();
-    // console.log(WeatherData);
+    const {weather, loading} = useGlobalContext();
+    
+    if(loading) {
+        return <h1>Loading...</h1>
+    }
+
     return (
         <div>
             {/* {weather.data === '' || weather.data.cod !== '404' ?  <WeatherData/> : <h1>Failed to fetch the weather details of requested city</h1>} */}

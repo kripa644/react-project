@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useRef, useEffect } from 'react';
 import styles from './SearchItem.module.css';
 import logo from './logo.png';
 import { BiSearchAlt2 } from 'react-icons/bi';
@@ -8,6 +7,11 @@ import { Link } from 'react-router-dom';
 
 const SearchItem = props => {
     const {searchTerm, setSearchTerm, fetchWeatherData, setWeather,  weather} = useGlobalContext();
+    const searchItemRef = useRef(null);
+
+    useEffect(() => {
+        searchItemRef.current.focus();
+    }, []);
 
     return (
         <div className={styles.navContainer}>
@@ -21,6 +25,7 @@ const SearchItem = props => {
                         id='searchCity' 
                         placeholder='Search City'
                         value={searchTerm}
+                        ref={searchItemRef}
                         onChange={(e) => {
                             setSearchTerm(e.target.value);
                             setWeather({data: ''});

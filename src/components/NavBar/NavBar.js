@@ -5,14 +5,15 @@ import {useGlobalContext} from '../context';
 
 const NavBar = props => {
     const {selectedNavItem, setSelectedNavItem} = useGlobalContext();
+    
     const displayTime = () => {
         var d = new Date(),
-        minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
-        hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours(),
-        ampm = d.getHours() >= 12 ? 'pm' : 'am',
+        minutes = d.getMinutes().toString().length === 1 ? '0'+d.getMinutes() : d.getMinutes(),
+        hours = d.getHours().toString().length === 1 ? '0'+d.getHours() : d.getHours(),
+        ampm = d.getHours() >= 12 ? 'PM' : 'AM',
         months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
         days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-        return days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+ampm;
+        return days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+'    '+hours+':'+minutes+ampm;
     };
 
     const navItemClass1 = `${styles.navItem} ${selectedNavItem === 0 ? styles.show : undefined}`;
@@ -41,7 +42,7 @@ const NavBar = props => {
                 </div>
             </nav>
 
-            <div className={styles.date}>{displayTime().toUpperCase()}</div>
+            <div className={styles.date}>{displayTime()}</div>
         </div>
     );
 };

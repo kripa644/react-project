@@ -8,16 +8,19 @@ import NavBar from './components/NavBar/NavBar';
 import SearchItem from './components/SearchItem/SearchItem';
 import { useGlobalContext } from "./components/context";
 
-const logoUrl = './logo.png';
-
 function App() {
-  const {setSelectedNavItem} = useGlobalContext();
+  const {setSelectedNavItem, setWeather} = useGlobalContext();
 
   return (
     <div className='app'>
       <div className='app-container'>
         <Router>
-          <Link to='/' onClick={() => setSelectedNavItem(0)}><SearchItem/></Link>
+          <Link to='/' onClick={() => {
+            setSelectedNavItem(0);
+            setWeather({data: ''});
+          }}>
+            <SearchItem/>
+          </Link>
           <NavBar/>
           <div className='line'></div>
           <Switch>
