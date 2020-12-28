@@ -12,7 +12,6 @@ const Home = () => {
 
     return (
         <div>
-            {/* {weather.data === '' || weather.data.cod !== '404' ?  <WeatherData/> : <h1>Failed to fetch the weather details of requested city</h1>} */}
             {weather.data !== '' ? <WeatherData/>: <h2>Please search for city...</h2>}
         </div>
     );

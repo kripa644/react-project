@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import styles from './WeatherData.module.css';
 import { FaCloudShowersHeavy, FaHeart, FaThermometerThreeQuarters, FaRegHeart, FaWind } from 'react-icons/fa';
 import {BsDroplet} from 'react-icons/bs';
-import {MdVisibility} from 'react-icons/md'
-import sunny from '../icons/sunny.png';
+import {MdVisibility} from 'react-icons/md';
 import {useGlobalContext} from '../context';
 
 const WeatherData = props => {
