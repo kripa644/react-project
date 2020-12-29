@@ -12,7 +12,7 @@ const WeatherData = props => {
     "http://openweathermap.org/img/w/" +
     `${(weather.data.cod != 404) ? weather.data.weather[0].icon : null}` +
     ".png";
-    const [isCelcius, setIsCelcius] = useLocalStorageState(false, 'isCelcius');
+    const [isCelcius, setIsCelcius] = useState(false);
     const tempClassCelcius = `${styles.tempBtn} ${isCelcius ? styles.celcius : undefined}`;
     const tempClassFah = `${styles.tempBtn} ${!isCelcius ? styles.celcius : undefined}`;
     // console.log(weather);
@@ -84,7 +84,7 @@ const WeatherData = props => {
                 </div>
                 <div className={styles.precipitation}>
                 <div className={styles.precipitationIcon}><FaCloudShowersHeavy/></div>
-                    <div className={styles.precipitationText}>Precipitation <span>{weather.data.rain ? weather.data.rain['1h'] + ' mm' : '0%'}</span></div>
+                    <div className={styles.precipitationText}>Precipitation <span>{weather.data.rain ? (weather.data.rain['1h'] + ' mm') : (weather.data.snow ? (weather.data.snow['1h'] + ' mm') : '0%')}</span></div>
                 </div>
                 <div className={styles.humidity}>
                 <div className={styles.humidityIcon}><BsDroplet/></div>
