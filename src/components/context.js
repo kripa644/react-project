@@ -13,11 +13,11 @@ const AppContext = React.createContext();
 
 const AppProvider = ({children}) => {
 
-    const [selectedNavItem, setSelectedNavItem] = useState(0);
+    const [selectedNavItem, setSelectedNavItem] = useLocalStorageState(0, 'selectedNavItem');
     const [searchTerm, setSearchTerm] = useState('');
     const [weather, setWeather] = useState({data: ''});
     const [loading, setLoading] = useState(false);
-    const [recentItems, setRecentItems] = useState([]);
+    const [recentItems, setRecentItems] = useLocalStorageState([], 'recentItems');
 
     const addToFavorite = (cityName) => {
         const newRecentList = recentItems.map((item) => {
