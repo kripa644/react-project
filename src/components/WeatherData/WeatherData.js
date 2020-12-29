@@ -7,15 +7,26 @@ import {useGlobalContext} from '../context';
 import {useLocalStorageState} from '../useLocalStorageState';
 
 const WeatherData = props => {
-    const {weather, loading, addToFavorite, recentItems} = useGlobalContext();
+    const {weather, loading, addToFavorite, recentItems, setRecentItems} = useGlobalContext();
     const iconurl =
     "http://openweathermap.org/img/w/" +
     `${(weather.data.cod != 404) ? weather.data.weather[0].icon : null}` +
     ".png";
-    const [isCelcius, setIsCelcius] = useLocalStorageState(false, 'isCelcius');
+    const [isCelcius, setIsCelcius] = useState(false);
     const tempClassCelcius = `${styles.tempBtn} ${isCelcius ? styles.celcius : undefined}`;
     const tempClassFah = `${styles.tempBtn} ${!isCelcius ? styles.celcius : undefined}`;
     // console.log(weather);
+
+    const removeFromFavorite = (cityName) => {
+        const newRecentList = recentItems.map((item) => {
+            if(item.city === cityName) {
+                const newItem = {...item, isFavorite: false};
+                return newItem;
+            }
+            return item;
+        });
+        setRecentItems(newRecentList);
+    }
 
     const isFavorite = (cityName) => {
         if(weather.data !== '') {
@@ -45,9 +56,11 @@ const WeatherData = props => {
                 <span>Add to favourite</span>
             </div> :
             <div className={styles.favorite}>
-                <div className={styles.favoriteIcon}>
-                    <FaHeart/>
-                    <span>Added to favourite</span>
+                <div className={styles.favoriteIcon} >
+                    <button className={styles.favoriteButton} onClick={() => removeFromFavorite(weather.data.name)}>
+                        <FaHeart/>
+                    </button>
+                    <span >Added to favourite</span>
                 </div>
             </div>
             }
@@ -71,7 +84,7 @@ const WeatherData = props => {
                 </div>
                 <div className={styles.precipitation}>
                 <div className={styles.precipitationIcon}><FaCloudShowersHeavy/></div>
-                    <div className={styles.precipitationText}>Precipitation <span>{weather.data.rain ? weather.data.rain['3h'] : '0'}%</span></div>
+                    <div className={styles.precipitationText}>Precipitation <span>{weather.data.rain ? weather.data.rain['1h'] + ' mm' : '0%'}</span></div>
                 </div>
                 <div className={styles.humidity}>
                 <div className={styles.humidityIcon}><BsDroplet/></div>

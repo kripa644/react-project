@@ -5,9 +5,15 @@ import './pages.css';
 import Modal from '../components/Modal/Modal';
 import FavouriteItem from '../components/FavouriteItem/FavouriteItem';
 
+const api = {
+    key: 'eba3ee12c3c0d28e4314be09645d4d8b',
+    url: 'https://api.openweathermap.org/data/2.5/weather?'
+};
+
 const Favorites = () => {
   const {recentItems, setRecentItems} = useGlobalContext();
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
   const closeModal = () => {
     setShow(false);
@@ -21,12 +27,25 @@ const Favorites = () => {
   //   setFavorites([]);
   // }
 
+  const fetchweather = async (item) => {
+    const data = await fetch(`${api.url}q=${item.city}&units=imperial&appid=${api.key}`
+            ).then((res) => res.json())
+            .then(data => data);
+    const newItem = {city: data.name, 
+                country: item.country,
+                icon: data.weather[0].icon, 
+                temp: Math.round((data.main.temp - 32) / 1.8), 
+                info: data.weather[0].description, 
+                isFavorite: false,
+                isRecent: true};
+    setFavorites(favorites.concat(newItem));
+  }
+
   const remove = () => {
     const newFavItems = recentItems.map((item) => {
       return {...item, isFavorite: false};
     });
     setRecentItems(newFavItems);
-    console.log(recentItems);
     // setFavorites([]);
   }
 
@@ -42,6 +61,11 @@ const Favorites = () => {
         </div>
         <div className='favouriteItems'>
           {favoriteItems.map((item, index) => {
+            {/* fetchweather(item);
+            const newItem = favorites.find((element) => element.city === item.city);
+            if(newItem !== null) {
+              return <FavouriteItem key={index} {...newItem}/>
+            } */}
             return <FavouriteItem key={index} {...item}/>
           })}
         </div>
