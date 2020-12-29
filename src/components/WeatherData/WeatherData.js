@@ -12,7 +12,7 @@ const WeatherData = props => {
     "http://openweathermap.org/img/w/" +
     `${(weather.data.cod != 404) ? weather.data.weather[0].icon : null}` +
     ".png";
-    const [isCelcius, setIsCelcius] = useState(false);
+    const [isCelcius, setIsCelcius] = useLocalStorageState(false, 'isCelcius');
     const tempClassCelcius = `${styles.tempBtn} ${isCelcius ? styles.celcius : undefined}`;
     const tempClassFah = `${styles.tempBtn} ${!isCelcius ? styles.celcius : undefined}`;
     // console.log(weather);
